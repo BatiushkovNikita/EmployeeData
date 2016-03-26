@@ -1,7 +1,16 @@
 package by.self.employee.data.interf;
 
-/**
- * Created by batiu_000 on 25.03.2016.
- */
+import by.self.employee.data.vo.EmployeeVO;
+import org.springframework.data.annotation.Id;
+
+import java.util.List;
+
 public interface EmployeeService {
+
+    List<EmployeeVO> getAll();
+
+    void createEmployee(EmployeeVO employeeVO);
+
+    void deleteEmployee(Integer id);
+
 }

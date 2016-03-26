@@ -20,9 +20,8 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories( {"by.news.service.daojpa"} )
+@EnableJpaRepositories( {"by.self.employee.data"} )
 @PropertySource( {"classpath:persistence-config.properties"} )
-@Import(Beans.class)
 public class DataConfig {
 
     @Inject
@@ -32,7 +31,7 @@ public class DataConfig {
     public DriverManagerDataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(env.getProperty("db.driver"));
-        dataSource.setUrl(env.getProperty("db.url"));
+        dataSource.setUrl(env.getProperty("db.url") + "/" + env.getProperty("db.name"));
         dataSource.setUsername(env.getProperty("db.username"));
         dataSource.setPassword(env.getProperty("db.password"));
         return dataSource;

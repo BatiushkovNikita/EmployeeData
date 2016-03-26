@@ -8,7 +8,7 @@
 			<PatternLayout pattern="${pattern}"/>
 		</Console>
 
-		<RollingFile name="appender-server-1-all" fileName="${env:CATALINA_HOME}/logs/news-service-all.log"  filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+		<RollingFile name="appender-server-1-all" fileName="${env:CATALINA_HOME}/logs/employee-data-all.log"  filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
 			<PatternLayout>
 				<Pattern>${pattern}</Pattern>
 			</PatternLayout>
@@ -17,7 +17,7 @@
 			</Policies>
 		</RollingFile>
 
-		<RollingFile name="appender-server-1-error" fileName="${env:CATALINA_HOME}/logs/news-service-error.log"  filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+		<RollingFile name="appender-server-1-error" fileName="${env:CATALINA_HOME}/logs/employee-data-error.log"  filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
 			<PatternLayout>
 				<Pattern>${pattern}</Pattern>
 			</PatternLayout>

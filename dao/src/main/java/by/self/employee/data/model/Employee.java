@@ -12,7 +12,7 @@ public class Employee implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -24,28 +24,24 @@ public class Employee implements Serializable {
     private String position;
 
     @Column(name = "department_id")
-    private Long departmentId;
+    private Integer departmentId;
 
-    @ManyToOne
+    @ManyToOne//(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinColumn(name = "department_id", insertable = false, updatable = false)
     private Department department;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String position, Long departmentId) {
+    public Employee(String firstName, String lastName, String position, Department department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.position = position;
-        this.departmentId = departmentId;
+        this.department = department;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getFirstName() {
@@ -72,11 +68,11 @@ public class Employee implements Serializable {
         this.position = position;
     }
 
-    public Long getDepartmentId() {
+    public Integer getDepartmentId() {
         return departmentId;
     }
 
-    public void setDepartmentId(Long departmentId) {
+    public void setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
     }
 
@@ -116,11 +112,11 @@ public class Employee implements Serializable {
     @Override
     public String toString() {
         return "Employee{" +
-                "departmentId=" + departmentId +
-                ", position='" + position + '\'' +
-                ", lastName='" + lastName + '\'' +
+                "id=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", id=" + id +
+                ", lastName='" + lastName + '\'' +
+                ", position='" + position + '\'' +
+                ", departmentId=" + departmentId +
                 '}';
     }
 }

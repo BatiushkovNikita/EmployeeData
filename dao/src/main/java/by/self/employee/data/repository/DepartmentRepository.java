@@ -1,7 +1,10 @@
 package by.self.employee.data.repository;
 
-/**
- * Created by batiu_000 on 26.03.2016.
- */
-public class DepartmentRepository {
+import by.self.employee.data.model.Department;
+import by.self.employee.data.model.Employee;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface DepartmentRepository extends CrudRepository<Department, Integer> {
 }

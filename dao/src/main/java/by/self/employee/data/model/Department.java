@@ -12,7 +12,7 @@ public class Department implements Serializable {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "name")
     private String name;
@@ -20,17 +20,12 @@ public class Department implements Serializable {
     public Department() {
     }
 
-    public Department(Long id, String name) {
-        this.id = id;
+    public Department(String name) {
         this.name = name;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -50,6 +45,7 @@ public class Department implements Serializable {
 
         if (!id.equals(that.id)) return false;
         return name.equals(that.name);
+
     }
 
     @Override

@@ -18,7 +18,7 @@ import java.util.Locale;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"by.news.service.web"})
+@ComponentScan({"by.self.employee.data"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override

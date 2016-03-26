@@ -2,51 +2,89 @@
 
 <html>
 <head>
-    <title>News feed</title>
+    <title>Employee Data</title>
     <%@ include file="include.jsp" %>
 </head>
 <body>
-<%@ include file="frag/header.jsp" %>
-<div class="container">
-    <h2><spring:message code="newsfeed.title"/></h2>
-    <c:forEach items="${newsFeed}" var="newses">
-        <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <b>${newses.topic}</b><br>
-                    <h6><i>${newses.publicationDate}</i></h6>
-                </div>
-                <div class="panel-body">${newses.newsText}</div>
-                <div class="panel-footer">
-                    <h6>
-                        <spring:message code="newsfeed.author"/>: ${newses.authorFirsName} ${newses.authorLastName}<br>
-                        <spring:message code="newsfeed.tags"/>:
-                        <c:forEach items="${newses.tagsVO}" var="tags">
-                            <spring:url value="tagnewsfeed?tag={tagName}" var="newsesByTag">
-                                <spring:param name="tagName" value="${tags.tagName}"/>
-                            </spring:url>
-                            <a href="${fn:escapeXml(newsesByTag)}">${tags.tagName}</a>
-                        </c:forEach>
-                    </h6>
-                    <sec:authorize access="hasAnyRole('admin','moderator')">
-                        <p>
-                            <spring:url value="{newsId}/edit" var="editNewsUrl">
-                                <spring:param name="newsId" value="${newses.id}"/>
-                            </spring:url>
-                            <a href="${fn:escapeXml(editNewsUrl)}" class="btn btn-default btn-xs">
-                                <spring:message code="newsfeed.edit.news"/></a>
 
-                            <spring:url value="{newsId}/delete" var="deleteNewsUrl">
-                                <spring:param name="newsId" value="${newses.id}"/>
-                            </spring:url>
-                            <a href="${fn:escapeXml(deleteNewsUrl)}" class="btn btn-danger btn-xs">
-                                <spring:message code="newsfeed.delete.news"/></a>
-                        </p>
-                    </sec:authorize>
-                </div>
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                Employee Data
             </div>
         </div>
-    </c:forEach>
-</div>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+        <c:url value="/addEmployee" var="addEmployee"/>
+        <form:form modelAttribute="employeeParam" action="${addEmployee}" method="post">
+            <div class="row">
+                <div class="col-md-2 col-md-offset-1">
+                    <form:input placeholder="First name" path="firstName" cssClass="form-control"/>
+                </div>
+                <div class="col-md-2">
+                    <form:input placeholder="Last name" path="lastName" cssClass="form-control"/>
+                </div>
+
+                <div class="col-md-2">
+                    <form:input placeholder="Position" path="position" cssClass="form-control"/>
+                </div>
+                
+                <div class="col-md-2">
+                    <form:input placeholder="First name" path="department" cssClass="form-control"/>
+                </div>
+
+                <div class="col-md-2">
+                    <button class="btn btn-default" type="submit">Add</button>
+                </div>
+            </div>
+        </form:form>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                        </a>
+                        First Name
+                    </th>
+                    <th>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-sort-by-attributes"></span>
+                        </a>
+                        Last Name
+                    </th>
+                    <th>
+                        Position
+                    </th>
+                    <th>
+                        Department
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                    <c:forEach items="${employees}" var="employee">
+                        <tr>
+                            <td>${employee.firstName}</td>
+                            <td>${employee.lastName}</td>
+                            <td>${employee.position}</td>
+                            <td>${employee.department}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</section>
+
 </body>
 </html>

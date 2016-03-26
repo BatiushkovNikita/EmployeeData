@@ -1,6 +1,5 @@
 package by.self.employee.data.config;
 
-import by.news.service.service.config.ServiceConfig;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -19,9 +18,8 @@ public class Initializer implements WebApplicationInitializer {
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
         context.register(WebConfig.class);
-        context.register(SecurityConfig.class);
         context.register(ServiceConfig.class);
-        context.register(Beans.class);
+        context.register(DataConfig.class);
 
         FilterRegistration.Dynamic encodingFilter =
                 servletContext.addFilter("encoding-filter", new CharacterEncodingFilter());

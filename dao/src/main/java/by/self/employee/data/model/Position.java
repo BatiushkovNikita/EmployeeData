@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "department")
-public class Department {
+@Table(name = "position")
+public class Position {
 
     @Id
     @Column(name = "id")
@@ -15,15 +15,15 @@ public class Department {
     @Column(name = "name")
     private String name;
 
-    public Department() {
-    }
-
-    public Department(String name) {
-        this.name = name;
+    public Position() {
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -39,11 +39,12 @@ public class Department {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Department that = (Department) o;
+        Position position = (Position) o;
 
-        if (!id.equals(that.id)) return false;
-        return name.equals(that.name);
+        if (!id.equals(position.id)) return false;
+        if (!name.equals(position.name)) return false;
 
+        return true;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class Department {
 
     @Override
     public String toString() {
-        return "Department{" +
+        return "Position{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

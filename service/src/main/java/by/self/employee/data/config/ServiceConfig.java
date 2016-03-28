@@ -1,9 +1,9 @@
 package by.self.employee.data.config;
 
 import by.self.employee.data.impl.EmployeeServiceImpl;
-import by.self.employee.data.impl.ServiceImpl;
+import by.self.employee.data.impl.LocalServiceImpl;
 import by.self.employee.data.interf.EmployeeService;
-import by.self.employee.data.interf.Service;
+import by.self.employee.data.interf.LocalService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +20,7 @@ public class ServiceConfig {
     }
 
     @Bean
-    public Service service() {
-        return new ServiceImpl();
+    public LocalService localService() {
+        return new LocalServiceImpl();
     }
 }

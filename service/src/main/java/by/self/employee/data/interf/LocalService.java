@@ -1,14 +1,15 @@
 package by.self.employee.data.interf;
 
 import by.self.employee.data.model.Department;
+import by.self.employee.data.model.Position;
 import by.self.employee.data.vo.DepartmentVO;
 
 import java.util.List;
 import java.util.Set;
 
-public interface Service {
+public interface LocalService {
 
-    Set<Department> getAll();
+    List<Department> getAllDepartments();
 
-    List<String> getPositionNames();
+    List<Position> getAllPositions();
 }

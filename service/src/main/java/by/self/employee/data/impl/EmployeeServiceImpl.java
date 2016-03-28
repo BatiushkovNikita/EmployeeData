@@ -3,8 +3,8 @@ package by.self.employee.data.impl;
 import by.self.employee.data.interf.EmployeeService;
 import by.self.employee.data.model.Department;
 import by.self.employee.data.model.Employee;
+import by.self.employee.data.repository.DepartmentRepository;
 import by.self.employee.data.repository.EmployeeRepository;
-import by.self.employee.data.vo.DepartmentVO;
 import by.self.employee.data.vo.EmployeeVO;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,7 +18,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Inject
     private EmployeeRepository employeeRepository;
-
 
     @Override
     @Transactional(readOnly = true)
@@ -54,9 +53,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         Employee employee = new Employee();
         employee.setFirstName(employeeVO.getFirstName());
         employee.setLastName(employeeVO.getLastName());
-        employee.setPosition(employeeVO.getPosition());
-        //employee.setDepartmentId(employeeVO.getDepartment().getId());
-        employee.setDepartment(extractDepartment(employeeVO));
+        employee.setDepartmentId(employeeVO.getDepartmentId());
+        employee.setPositionId(employeeVO.getPositionId());
         return employee;
     }
 
@@ -65,14 +63,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeVO.setId(employee.getId());
         employeeVO.setFirstName(employee.getFirstName());
         employeeVO.setLastName(employee.getLastName());
-        employeeVO.setPosition(employee.getPosition());
-        //employeeVO.setDepartmentName();
+        employeeVO.setDepartmentName(employee.getDepartment().getName());
+        employeeVO.setPositionName(employee.getPosition().getName());
         return employeeVO;
-    }
-
-    private  Department extractDepartment(EmployeeVO employeeVO) {
-        Department department = new Department();
-        //department.setName(employeeVO.getDepartment().getName());
-        return department;
     }
 }

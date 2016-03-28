@@ -1,29 +1,28 @@
-package by.self.employee.data.model;
+package by.self.employee.data.vo;
 
-import javax.persistence.*;
-import java.io.Serializable;
+public class PositionVO {
 
-@Entity
-@Table(name = "department")
-public class Department {
-
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "name")
     private String name;
 
-    public Department() {
+    public PositionVO() {
     }
 
-    public Department(String name) {
+    public PositionVO(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public PositionVO(String name) {
         this.name = name;
     }
 
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -39,11 +38,12 @@ public class Department {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Department that = (Department) o;
+        PositionVO that = (PositionVO) o;
 
         if (!id.equals(that.id)) return false;
-        return name.equals(that.name);
+        if (!name.equals(that.name)) return false;
 
+        return true;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Department {
 
     @Override
     public String toString() {
-        return "Department{" +
+        return "PositionVO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

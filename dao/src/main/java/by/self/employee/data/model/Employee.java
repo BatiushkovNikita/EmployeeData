@@ -5,9 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "employee")
-public class Employee implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+public class Employee {
 
     @Id
     @Column(name = "id")
@@ -20,28 +18,29 @@ public class Employee implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "position")
-    private String position;
+    @Column(name = "position_id")
+    private Integer positionId;
 
     @Column(name = "department_id")
     private Integer departmentId;
 
-    @ManyToOne//(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+    @ManyToOne
     @JoinColumn(name = "department_id", insertable = false, updatable = false)
     private Department department;
+
+    @ManyToOne
+    @JoinColumn(name = "position_id", insertable = false, updatable = false)
+    private Position position;
 
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String position, Department department) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.position = position;
-        this.department = department;
-    }
-
     public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -60,12 +59,12 @@ public class Employee implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getPosition() {
-        return position;
+    public Integer getPositionId() {
+        return positionId;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setPositionId(Integer positionId) {
+        this.positionId = positionId;
     }
 
     public Integer getDepartmentId() {
@@ -84,6 +83,14 @@ public class Employee implements Serializable {
         this.department = department;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -91,12 +98,13 @@ public class Employee implements Serializable {
 
         Employee employee = (Employee) o;
 
-        if (!id.equals(employee.id)) return false;
+        if (!departmentId.equals(employee.departmentId)) return false;
         if (!firstName.equals(employee.firstName)) return false;
+        if (!id.equals(employee.id)) return false;
         if (!lastName.equals(employee.lastName)) return false;
-        if (!position.equals(employee.position)) return false;
-        return departmentId.equals(employee.departmentId);
+        if (!positionId.equals(employee.positionId)) return false;
 
+        return true;
     }
 
     @Override
@@ -104,7 +112,7 @@ public class Employee implements Serializable {
         int result = id.hashCode();
         result = 31 * result + firstName.hashCode();
         result = 31 * result + lastName.hashCode();
-        result = 31 * result + position.hashCode();
+        result = 31 * result + positionId.hashCode();
         result = 31 * result + departmentId.hashCode();
         return result;
     }
@@ -112,11 +120,11 @@ public class Employee implements Serializable {
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
+                "departmentId=" + departmentId +
+                ", positionId='" + positionId + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", position='" + position + '\'' +
-                ", departmentId=" + departmentId +
+                ", firstName='" + firstName + '\'' +
+                ", id=" + id +
                 '}';
     }
 }

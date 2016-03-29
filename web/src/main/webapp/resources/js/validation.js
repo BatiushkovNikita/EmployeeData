@@ -9,7 +9,7 @@ function validateForm(event) {
     } else if (firstName.length > 45) {
         firstNameError.innerText = 'First name to long';
         event.preventDefault();
-    } else if (firstName.match('^([A-z][a-z]+)$') == null) {
+    } else if (firstName.match('^([A-za-z]+)$') == null) {
         firstNameError.innerText = 'First name should contain only letters';
         event.preventDefault();
     }
@@ -23,7 +23,7 @@ function validateForm(event) {
     } else if (lastName.length > 45) {
         lastNameError.innerText = 'Last name to long';
         event.preventDefault();
-    } else if (lastName.match('^([A-z][a-z]+)$') == null) {
+    } else if (lastName.match('^([A-za-z]+)$') == null) {
         lastNameError.innerText = 'Last name should contain only letters';
         event.preventDefault();
     }
